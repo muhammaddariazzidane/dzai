@@ -94,7 +94,7 @@ export default function MessageItem({
                     "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                   ) && (
                       <Badge
-                        variant={"outline"}
+                        variant={"outline-solid"}
                         className="rounded-full bg-blue-800 hover:bg-blue-900 py-1.5 w-full max-w-xs text-xs flex flex-wrap justify-center gap-1.5 px-3"
                       >
                         <ImFileWord size={20} />

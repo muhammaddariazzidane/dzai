@@ -36,7 +36,7 @@ export default function SignIn() {
         <Button
           onClick={signInWithGoogle}
           variant={"default"}
-          className="w-fit flex gap-2 items-center rounded-full"
+          className="w-fit flex gap-2 items-center rounded-full cursor-pointer"
         >
           <FcGoogle size={20} />
           <p>Sign in with Google</p>

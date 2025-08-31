@@ -39,7 +39,7 @@ export default function DropdownConversationMenu() {
           conversations.map((conversation: ConversationType, index: number) => (
             <Button
               variant={"ghost"}
-              className={`flex items-center justify-between gap-3 group rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary ${conversation?.id === selectedConversation?.id && "active"
+              className={`flex items-center justify-between gap-3 group rounded-lg px-0.5 py-2 text-muted-foreground transition-all hover:text-primary cursor-pointer hover:px-2 duration-300 ${conversation?.id === selectedConversation?.id && "active"
                 }`}
               key={index}
               onClick={() => {
@@ -47,12 +47,12 @@ export default function DropdownConversationMenu() {
                   setIsSidebarOpen(!isSidebarOpen);
               }}
             >
-              <p className="bg-clip-text text-transparent bg-gradient-to-r from-foreground via-foreground to-gray-400">
+              <p className="bg-clip-text text-transparent bg-linear-to-r from-foreground via-foreground to-gray-400">
                 {conversation.title}...
               </p>
               <DropdownMenu>
                 <DropdownMenuTrigger>
-                  <DotsHorizontalIcon className="scale-0  group-hover:scale-100 transition-transform duration-300" />
+                  <DotsHorizontalIcon className="scale-0  group-hover:scale-100 transition-transform duration-300 cursor-pointer" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="mr-16">
                   <DropdownMenuItem

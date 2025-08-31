@@ -77,7 +77,7 @@ export default function MessageForm({
       icon: GiFlexibleLamp
     },
     {
-      value: 'simple golang code',
+      value: 'Simple golang code',
       icon: CgBrowser
     },
     {
@@ -95,7 +95,7 @@ export default function MessageForm({
           />
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 mt-12 place-items-center p-4 gap-5 max-w-2xl mx-auto">
             {suggestionMessages.map((item: { value: string, icon: IconType }, index) => (
-              <div onClick={() => handleSendMessage({ userInput: item.value })} className="border w-fit min-h-24 cursor-pointer p-3 shadow rounded-xl hover:scale-105 hover:bg-secondary transition-all duration-300" key={index}>
+              <div onClick={() => handleSendMessage({ userInput: item.value })} className="border w-fit min-h-24 cursor-pointer p-3 shadow-sm rounded-xl hover:scale-105 hover:bg-secondary transition-all duration-300" key={index}>
                 <item.icon />
                 <p className="text-sm pt-1.5">{item.value}</p>
               </div>
@@ -159,7 +159,7 @@ export default function MessageForm({
               })}
               tabIndex={1}
               placeholder="Enter your message"
-              className="flex-1 bg-transparent min-w-full outline-none pl-2 w-full break-words pr-11 resize-none scrollbar-none"
+              className="flex-1 bg-transparent min-w-full outline-hidden pl-2 w-full break-words pr-11 resize-none scrollbar-none"
             />
             <div className="absolute -right-3 items-center justify-end ">
               <Button

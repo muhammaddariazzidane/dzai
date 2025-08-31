@@ -33,9 +33,9 @@ export default function ConversationRoom() {
 
   useEffect(scrollToBottom, [messages]);
   return (
-    <main className="grid min-h-screen w-full grid-cols-4 ">
+    <main className="grid min-h-screen w-full grid-cols-5 ">
       <Sidebar />
-      <div className="p-2 sm:p-5 col-span-12 sm:col-span-3 h-fit min-h-full sm:mt-0 max-h-screen  relative">
+      <div className="p-2 sm:p-5 col-span-12 sm:col-span-4 h-fit min-h-full sm:mt-0 max-h-screen  relative">
         <Navbar />
         <MessageList messages={messages} messagesEndRef={messagesEndRef} />
         <MessageForm messages={messages} />
