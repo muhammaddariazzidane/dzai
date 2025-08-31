@@ -77,7 +77,7 @@ export const useMessageStore = create<MessageStore>((set) => ({
       query(
         collection(db, "conversations"),
         where("userId", "==", userId),
-        orderBy("startedAt", "desc")
+        orderBy("startedAt", "asc")
       ),
       (snapshot) => {
         const fetchedConversations: ConversationType[] = snapshot.docs.map(
