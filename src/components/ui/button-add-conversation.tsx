@@ -17,7 +17,7 @@ export default function ButtonAddConversation({ className }: { className?: strin
     <Button
       size={"icon"}
       variant={"link"}
-      className={`${className ?? className}`}
+      className={`cursor-pointer ${className ?? className}`}
       onClick={() => {
         if (isLoading) return
         handleNewConversation(
