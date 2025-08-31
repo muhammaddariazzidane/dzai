@@ -19,7 +19,7 @@ import { type ClassValue, clsx } from "clsx";
 import { db, storage } from "@/lib/firebase";
 import { UserInfo } from "firebase/auth";
 import { twMerge } from "tailwind-merge";
-import { model } from "@/lib/model";
+import { genAI } from "@/lib/model";
 import { nanoid } from "nanoid";
 
 export function cn(...inputs: ClassValue[]) {
@@ -56,7 +56,6 @@ export const getNextConversation = (
 };
 
 export const handleChatResponse = async (
-  chat: any,
   conversationId: string,
   _userMessage: any,
   files: any,
@@ -67,13 +66,15 @@ export const handleChatResponse = async (
   const maxRetries = 3;
   let attempt = 0;
   let result: any;
-
   while (attempt < maxRetries) {
     try {
-      result = await chat.sendMessageStream([
-        userInput,
-        ...(await Promise.all(files.map(fileToGenerativePart))),
-      ]);
+      result = await genAI.models.generateContentStream({
+        model: process.env.NEXT_PUBLIC_MODEL_TYPE as string,
+        contents: [
+          userInput,
+          ...(await Promise.all(files.map(fileToGenerativePart)))
+        ]
+      })
       break;
     } catch (error: any) {
       if (error.response && error.response.status === 500) {
@@ -91,8 +92,8 @@ export const handleChatResponse = async (
   }
 
   let responseText = "";
-  for await (const response of result.stream) {
-    responseText += response.text();
+  for await (const response of result) {
+    responseText += response.text;
   }
 
   const modelMessage = {
@@ -138,20 +139,6 @@ export const resetForm = (setPreviewFileName: (data: string) => void) => {
   if (inputFileElement) inputFileElement.value = "";
   setPreviewFileName("");
 };
-
-export const createChatInstance = () =>
-  model.startChat({
-    history: [
-      {
-        role: "user",
-        parts: [{ text: "Hello" }],
-      },
-      {
-        role: "model",
-        parts: [{ text: "Pleased to meet you. Can I help you?" }],
-      },
-    ],
-  });
 
 export const createUserMessage = (
   text: string,
@@ -348,8 +335,6 @@ export const handleSendMessage = async (
       user as UserInfo
     );
 
-    const chat = createChatInstance();
-
     if (selectedConversation === null) {
       const newConversationId = await handleNewConversationWithMessage(
         userMessage,
@@ -361,7 +346,6 @@ export const handleSendMessage = async (
         addMessages
       );
       await handleChatResponse(
-        chat,
         newConversationId,
         userMessage,
         files,
@@ -378,7 +362,6 @@ export const handleSendMessage = async (
         addMessages
       );
       await handleChatResponse(
-        chat,
         selectedConversation.id,
         userMessage,
         files,
