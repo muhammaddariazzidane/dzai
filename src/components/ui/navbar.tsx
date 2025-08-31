@@ -111,7 +111,7 @@ export default function Navbar() {
                   <h1 className="text-sm sm:text-base capitalize sm:block hidden">
                     {user?.displayName}
                   </h1>
-                  <Avatar className="w-8 h-8 sm:w-9 sm:h-9">
+                  <Avatar className="w-8 h-8 sm:w-9 sm:h-9 cursor-pointer">
                     <AvatarImage
                       src={String(user?.photoURL)}
                       alt={String(user?.photoURL)}
@@ -138,7 +138,7 @@ export default function Navbar() {
                   }}
                 >
                   <FiLogOut size={15} />
-                  Logout
+                  Sign Out
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

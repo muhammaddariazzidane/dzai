@@ -29,7 +29,7 @@ export default function SidebarMobile() {
           <span className="sr-only">Toggle navigation menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="flex flex-col w-full sm:hidden">
+      <SheetContent side="left" className="flex flex-col w-full sm:hidden ">
         <SheetHeader>
           <div className="flex gap-x-2.5 items-center -mt-4">
             <SheetTitle className="font-semibold text-lg">
@@ -41,10 +41,10 @@ export default function SidebarMobile() {
             Your conversations with your AI assistant
           </SheetDescription>
         </SheetHeader>
-        <nav className="grid gap-2 text-lg font-medium">
+        <nav className="grid gap-2 text-lg font-medium max-h-full overflow-y-auto">
           <DropdownConversationMenu />
         </nav>
-        <div className="mt-auto">
+        <div className="mt-auto hidden sm:block">
           <Button
             variant={"destructive"}
             className="w-fit flex items-center gap-x-2"
